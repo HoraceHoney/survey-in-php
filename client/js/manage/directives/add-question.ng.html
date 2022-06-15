@@ -1,0 +1,56 @@
+<a ng-click="showAddQuestionForm = !showAddQuestionForm;" ng-hide="showAddQuestionForm">
+Add a question <i class="icon-chevron-down"></i>
+</a>
+
+<form ng-show="showAddQuestionForm" name="addQuestionForm">
+  <h1>Create a new question:</h1>
+  <div class="form-align-group">
+    <label for="new-question-type">Type: </label>
+    <select ng-options="option.type as option.type for option in questionTypes"
+      ng-model="question.type"
+      required
+      id="new-question-type">
+    </select>
+  </div>
+  <div class="form-align-group">
+    <label for="new-question-question">Question: </label>
+    <input type="text"
+      ng-model="question.question"
+      required
+      id="new-question-question"/>
+  </div>
+  <div class="form-align-group">
+    <label for="new-question-help-text">Help Text: </label>
+    <input type="text"
+      ng-model="question.helpText"
+      for="new-question-help-text"/>
+  </div>
+
+  <div ng-if="question.type === 'radio'"
+    class="add-question-with-options"
+    add-question-with-options
+    existing-options="question.options"
+    question="question"
+  ></div>
+
+  <div ng-if="question.type === 'checkbox'"
+    class="add-question-with-options"
+    existing-options="question.options"
+    add-question-with-options
+    question="question"
+  ></div>
+
+  <div class="form-align-group">
+    <label for="new-question-is-required">Required? </label>
+    <input type="checkbox" ng-model="question.required" id="new-question-is-required"/>
+  </div>
+  <div class="form-align-group">
+    {{ addQuestion }}
+
+    <button ng-click="addQuestion(question)" ng-disabled="addQuestionForm.$invalid">Create Question
+    </button>
+    <a class="cancel" ng-click="showAddQuestionForm = false">
+      <i class="icon-cross"></i>Cancel
+    </a>
+  </div>
+</form>

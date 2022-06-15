@@ -1,0 +1,36 @@
+<div class="form-align-group">
+  <label for="survey-name">Name:</label>
+  <input id="survey-name" ng-model="survey.name" type="text">
+</div>
+<div class="form-align-group">
+  <label for="survey-description">Description:</label>
+  <textarea id="survey-description" ng-model="survey.description"></textarea>
+</div>
+<div class="form-align-group">
+  <label for="survey-end-note">End note:</label>
+  <textarea id="survey-end-note" ng-model="survey.endNote"></textarea>
+</div>
+<div class="form-align-group">
+  <label for="survey-is-active">Is it active?</label>
+  <input id="survey-is-active" type="checkbox" ng-model="survey.active"/>
+</div>
+<div class="form-align-group">
+  <label for="survey-requires-sign-in">Does it require sign in?</label>
+  <input id="survey-requires-sign-in" type="checkbox" ng-model="survey.require_sign_in"/>
+</div>
+<div class="form-align-group">
+  <label for="survey-can-be-shared">Can it be shared?</label>
+  <input id="survey-can-be-shared" type="checkbox" ng-model="survey.canBeShared"/>
+</div>
+<div class="form-align-group">
+  <div class="offset">
+    <save-button
+      click-event="save"
+      text="'Save'"
+      saved-indicator="saved">
+    </save-button>
+    <!-- <button class="submit" ng-click="save(survey)">Save</button> -->
+    <span class="inform" ng-if="!form.$pristine">Save your changes!</span>
+
+  </div>
+</div>

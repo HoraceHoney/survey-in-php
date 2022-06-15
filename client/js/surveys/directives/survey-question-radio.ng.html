@@ -1,0 +1,28 @@
+<label ng-repeat="option in question.options | orderBy:'type' track by $index">
+
+  <input ng-if="option.type !== 'other'"
+    ng-model="question.answer"
+    ng-value="option"
+    name="{{ question.question }}"
+    ng-change="optionChanged(option)"
+    type="{{ question.type }}"/>
+
+  <span ng-if="option.type === 'other'">
+    <input ng-model="question.answer"
+      ng-value="option"
+      name="{{ question.question }}"
+      type="{{ question.type }}"
+      ng-change="optionChanged(option)"
+      /> {{ option.otherLabel || 'Other' }}
+  </span>
+
+  <input ng-if="option.type === 'other' && choosingOther"
+    type="text"
+    class="other"
+    ng-model="option.value"
+    ng-disabled="!choosingOther"/>
+
+  <span ng-if="option.type !== 'other'">
+    {{option.value}}
+  </span>
+</label>

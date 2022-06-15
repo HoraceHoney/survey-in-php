@@ -1,0 +1,36 @@
+<head>
+  <base href="/">
+  <title>Quick Survey</title>
+</head>
+
+<body ng-app="quick-survey">
+  <div class="page-wrap">
+    <div class="nav" ng-controller="NavBarCtrl">
+      <div class="admin" ng-if="is_admin">
+        <a href="/">survey</a>
+        <a href="/manage">manage</a>
+      </div>
+
+    </div>
+    <div ui-view
+      class="container wide-row"
+      ng-class="{ 'small-row': $state.includes('index') }">
+    </div>
+  </div>
+  <div ng-show="loading">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div log-in></div>
+  <footer class="site-footer">
+    <div class="wide-row footer-wrapper">
+      <img src="/images/squirrel-small.png" alt="Quick Survey Squirrel Logo"/>
+      <p>Powered by Quick-Survey: an easy-to-install survey tool that you control and own. Get started on
+      <a href="https://github.com/simonv3/quick-survey" target="_blank">
+        <i class="icon-github"></i> GitHub
+      </a>. Thanks Sandstorm!
+      </p>
+    </div>
+  </footer>
+</body>

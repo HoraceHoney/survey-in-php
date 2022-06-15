@@ -1,0 +1,31 @@
+<div class="has-submitted empty-state">
+  <span ng-show="!activeSurvey.endNote">Thanks for submitting your thoughts!</span>
+  <span btf-markdown="activeSurvey.endNote" ng-show="activeSurvey.endNote">
+  </span>
+
+  <hr/>
+
+  <div ng-if="activeSurvey.canBeShared">
+    <p>
+      You can share with other people.
+    </p>
+
+    <h2>To share privately</h2>
+      <p>
+        Click the button below to use Sandstorm's "Share Access" feature and share it with your contacts.
+      </p>
+
+    <h2>To share publicly</h2>
+      <p>
+        If you want to share a link to the survey that anyone can fill in, click the same button, but choose to share a link.
+      </p>
+      <p>
+        You can then shorten that URL if you want to make it a bit more accessible.
+      </p>
+
+    <a class="button" ng-click="share()">
+      <i class="icon-share"></i>
+      Share Survey using Sandstorm
+    </a>
+  </div>
+</div>

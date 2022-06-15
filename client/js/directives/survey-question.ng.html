@@ -1,0 +1,32 @@
+<span>
+  <label
+    ng-bind="question.question"
+    class="question"
+    ng-class="{'required': question.required }"
+    for="{{ question._id }}-answer"></label>
+  <small>{{ question.helpText }}</small>
+  <div class="answer">
+
+    <input type="{{ question.type }}"
+      ng-if="question.type !== 'textarea' && question.type !== 'radio' && question.type !== 'checkbox'"
+      ng-model="question.answer"
+      ng-required="question.required"
+      id="{{ question._id}}-answer"/>
+
+    <textarea ng-if="question.type === 'textarea'"
+      ng-model="question.answer"
+      ng-required="question.required"
+      id="{{ question._id}}-answer"></textarea>
+
+    <span ng-if="question.type === 'radio'"
+      survey-question-radio
+      question="question">
+    </span>
+
+    <span ng-if="question.type === 'checkbox'"
+      survey-question-checkbox
+      question="question">
+    </span>
+  </div>
+</span>
+

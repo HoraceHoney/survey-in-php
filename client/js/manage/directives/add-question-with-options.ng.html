@@ -1,0 +1,36 @@
+<ul>
+  <li ng-repeat="option in question.options | orderBy:'type' track by $index">
+    <div class="form-align-group" ng-if="option.type === 'normal'">
+      <label for="{{ }}"><input type="{{ question.type }}" disabled/></label>
+      <input id="{{ }}"
+        type="text"
+        class="option-text"
+        ng-model="option.value"
+        placeholder="Write something"/>
+      <a ng-click="remove($index)"
+        ng-if="question.options.length > 1">
+        <i class="icon-cross"></i>
+      </a>
+    </div>
+    <div class="form-align-group" ng-if="option.type === 'other'">
+      <label class="other-option-label" for="{{ }}-other"
+        ng-class="{active: active}">
+        <span class="other-label"
+          ng-click="active = true">{{ option.otherLabel || 'Other' }}:</span>
+        <input ng-model="option.otherLabel"
+          type="text"
+          ng-blur="active = false"></input>
+      </label>
+      <input id="{{ }}-other" type="text" disabled/>
+      <a ng-click="removeOther()">
+        <i class="icon-cross"></i>
+      </a>
+    </div>
+  </li>
+</ul>
+<a class="option-control" ng-click="addOption()"><i class="icon-plus"></i> Add option</a>
+<a class="option-control"
+  ng-click="addOther()"
+  ng-hide="otherAlreadyAdded">
+  <i class="icon-plus"></i> Add "other"
+</a>

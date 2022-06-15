@@ -1,0 +1,40 @@
+<div ng-if="(currentUser || !activeSurvey.require_sign_in) && activeSurvey.active && !(currentUser.has_submitted || has_submitted)" class="frontend">
+  <h1 ng-bind="activeSurvey.name"></h1>
+  <form class="survey" name="survey">
+    <div class="description"
+      btf-markdown="activeSurvey.description">
+    </div>
+    <ul class="survey-question-list">
+      <li class="survey-question"
+        ng-repeat="question in newResponse.questions"
+        survey-question="question">
+      </li>
+    </ul>
+
+    <button
+      ng-if="!(currentUser.has_submitted|| has_submitted)"
+      type="button"
+      ng-disabled="!survey.$valid"
+      class="submit-survey-responses"
+      ng-click="submit(newResponse)">Submit</button>
+  </form>
+</div>
+
+<p
+  ng-if="(currentUser.has_submitted ||  has_submitted)"
+  >
+  <a href="/submitted" class="icon-cog spin"> </a>Thanks! Just finishing up...
+</p>
+
+
+<div ng-if="activeSurvey === null || (!activeSurvey.active && loaded) || (activeSurvey.active && activeSurvey.questions.length === 0)" class="empty-state">
+  There is no active survey published yet.
+</div>
+
+<div ng-if="!currentUser && activeSurvey.active && activeSurvey.require_sign_in" class="please-sign-in empty-state">
+  Sign in or create an account to take the survey.
+</div>
+
+<div ng-if="!loaded" class="empty-state">
+  Loading...
+</div>

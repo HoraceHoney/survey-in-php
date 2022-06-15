@@ -1,0 +1,72 @@
+<h1>Admin</h1>
+  <div manage-survey
+    survey="activeSurvey">
+  </div>
+<h2>Results </h2>
+<table class="survey-results">
+  <thead>
+    <tr>
+      <th>Survey</th>
+      <th ng-repeat="question in responses[0].survey.questions" style="min-width: {{ 100 / responses[0].survey.questions.length }}px">
+        Question {{ $index + 1 }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="response in responses">
+    <td>{{ $index + 1 }}</td>
+    <td ng-repeat="question in response.questions">
+      {{ question.answer }}
+    </td>
+  </tr>
+  <tr ng-if="responses.length === 0">
+    <td>
+      No responses yet. <a ng-click="share()">Share your survey!</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<small ng-if="responses.length > 0"><a ng-click="exportAllResponses()" title="export all responses"><i class="icon-export"></i> Download CSV</a>.</small>
+<small ng-hide="on_sandstorm">
+  <a ng-click="sendTestEmail()" title="Send test email">Send test email</a>.
+</small>
+<small>
+  Reset:
+  <a ng-click="resetUsers()" title="Reset Users">Users</a>,
+  <a ng-click="clearResults()" title="Clear Results">Responses</a>
+</small>
+
+<hr>
+
+<p>
+  You can share this survey with other people, either other collaborators who can edit it, or respondents.
+</p>
+<h2>To share privately</h2>
+  <p>
+    Click the button below to use Sandstorm's "Share Access" feature and share it with your contacts.
+  </p>
+
+<h2>To share publicly</h2>
+  <p>
+    If you want to share a link to the survey that anyone can fill in, click the same button, but choose to share a link.
+  </p>
+  <p>
+    You can then shorten that URL if you want to make it a bit more accessible.
+  </p>
+
+<a class="button" ng-click="share()">
+  <i class="icon-share"></i>
+  Share Survey using Sandstorm
+</a>
+
+<hr>
+
+<div ng-hide="true">
+  <p>Want the results of this survey published as an RSS Feed?
+  <a ng-click="publishAsRSSFeed()" title="publish as an rss feed">Publish</a>
+  </p>
+
+  <p ng-if="publicUrl">
+  Your public URL: <a href="{{ publicUrl }}/feed.xml">{{ publicUrl }}/feed.xml</a>
+  </p>
+</div>
